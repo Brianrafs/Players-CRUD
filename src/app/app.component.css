@@ -1,0 +1,127 @@
+.toolbar{
+  background-color: #f3aad1;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.toolbar h1{
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: #fcf9f6;
+  flex-grow: 1;
+}
+
+.toolbar spacer{
+  color: #f3aad1;
+}
+
+.content{
+  display: flex;
+  justify-content: center;
+}
+
+#form{
+  min-width: 30rem;
+  margin-top: 5em;
+}
+
+.glass-card{
+  background: rgba(255, 255, 255, 0.19);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  display: flex;
+  margin-bottom: 5em;
+}
+
+mat-card-header{
+  justify-content: center;
+  margin-bottom: 2em;
+}
+
+mat-card-header h2{
+  color: #1f2128;
+}
+
+mat-form-field{
+  margin: 2rem;
+}
+
+mat-form-field input{
+  padding-top: 1em;
+  min-height: 3rem;
+}
+
+mat-form-field input:placeholder-shown{
+  color: #404452;
+}
+
+.error-message{
+  color: #ee5b65;
+}
+
+mat-button-toggle-group{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: row;
+}
+
+mat-button-toggle{
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5em;
+  height: 5em;
+  background-color: #fcf9f6;
+}
+
+mat-button-toggle:hover{
+  background-color: #f3aad1;
+}
+
+mat-button-toggle:active{
+  background-color: #e87fb6;
+}
+
+::ng-deep .mat-button-toggle-checked .mat-button-toggle-label-content{
+  background-color: #e87fb6;
+  border-radius: 50%;
+  height: 5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mat-mdc-card-footer{
+  display: flex;
+  justify-content: center;
+  margin-top: 3em;
+}
+
+.mat-mdc-raised-button{
+  min-height: 3rem;
+}
+
+.mat-mdc-raised-button:not(:disabled){
+  font-size: medium;
+  font-weight: bold;
+  background-color: #f3aad1;
+}
+
+.mat-mdc-raised-button:hover{
+  background-color: #e87fb6;
+}
+
+.mat-mdc-raised-button:active{
+  background-color: #c26297;
+}
+
+
+

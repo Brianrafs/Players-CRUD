@@ -1,0 +1,118 @@
+<!-- Toolbar -->
+<mat-toolbar class="toolbar" xmlns="http://www.w3.org/1999/html">
+  <img
+    width="100"
+    height="100"
+    alt="Riot Logo"
+    ngSrc="../assets/riot-games.svg"
+  />
+
+  <h1>Cadastro de Jogadores</h1>
+
+  <div class="spacer" style="width: 100px;"><p>.</p></div>
+
+</mat-toolbar>
+
+<div class="content" >
+
+  <!-- Cadastro Card -->
+  <mat-card class="glass-card" id="form">
+    <mat-card-header>
+      <h2>Insira as Informações</h2>
+    </mat-card-header>
+    <mat-card-content>
+          <mat-form-field appearance="fill">
+            <mat-label>Nome</mat-label>
+            <input matInput [(ngModel)]="playerTratamento.nome" [formControl]="nameFormControl" placeholder="Digite seu nome real">
+            <mat-error *ngIf="nameFormControl.hasError('required') && nameFormControl.touched" class="error-message">
+              <strong>Campo obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Nickname</mat-label>
+            <input matInput [(ngModel)]="playerTratamento.nick" [formControl]="nickFormControl" placeholder="Digite seu nome no jogo">
+            <mat-error *ngIf="nickFormControl.hasError('required') && nickFormControl.touched" class="error-message">
+              <strong>Campo obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Idade</mat-label>
+            <input matInput [(ngModel)]="playerTratamento.idade" [formControl]="ageFormControl" placeholder="Digite sua idade">
+            <mat-error *ngIf="ageFormControl.hasError('required') && ageFormControl.touched" class="error-message">
+              <strong>Campo obrigatório</strong>
+            </mat-error>
+          </mat-form-field>
+          <mat-button-toggle-group name="Lane" aria-label="Lane favorita">
+            <h3>Selecione a lane:</h3>
+            <mat-button-toggle  type="checkbox" value="Top">
+              <img
+              width="50"
+              height="50"
+              alt="Riot Logo"
+              ngSrc="../assets/TOP.png"
+              />
+            </mat-button-toggle>
+            <mat-button-toggle type="checkbox" value="Jungle">
+              <img
+                width="50"
+                height="50"
+              alt="Riot Logo"
+              ngSrc="../assets/jungle.png"
+              />
+            </mat-button-toggle>
+            <mat-button-toggle type="checkbox" value="Mid">
+              <img
+                width="50"
+                height="50"
+              alt="Riot Logo"
+              ngSrc="../assets/MID.png"
+              />
+            </mat-button-toggle>
+            <mat-button-toggle type="checkbox" value="Atirador">
+              <img
+                width="50"
+                height="50"
+              alt="Riot Logo"
+              ngSrc="../assets/adc.png"
+              />
+            </mat-button-toggle>
+            <mat-button-toggle type="checkbox" value="Suporte"><img
+              width="50"
+              height="50"
+              alt="Riot Logo"
+              ngSrc="../assets/sup.png"
+              />
+            </mat-button-toggle>
+          </mat-button-toggle-group>
+          <mat-card-footer>
+            <button mat-raised-button class="btn-primary" (click)="cadastrar()">Cadastrar</button>
+            <br>
+            <div class="mensagem-erro">{{mensagemErro}}</div>
+            <br>
+          </mat-card-footer>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<mat-card class="glass-card" *ngFor="let player of players">
+  <mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{player.nome}}</mat-card-title>
+      <mat-card-subtitle>{{player.nick}}</mat-card-subtitle>
+
+    </mat-card-title-group>
+  </mat-card-header>
+  <mat-card-content>
+    <p>O jogador {{player.nome}} está cadastrado como {{player.lane}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-fab color="primary" (click)="remover(player)">
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button mat-icon-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<router-outlet></router-outlet>
