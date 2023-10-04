@@ -14,17 +14,29 @@ export class AppComponent {
   protected readonly ageFormControl = ageFormControl;
   playerTratamento
   players: Player[] =[];
-  playersPesquisa: Array<Player> = [];
   mensagemErro = '';
+  lane:string =''
+  jogadorOriginal: Player = new Player('', '', 0, '')
+  modoEdicao: boolean = false;
 
   constructor() {
     this.playerTratamento = new Player('','',0,'');
   }
 
+  trackByPlayer(index: number, player: Player): string {
+    return player.nick; // Use uma propriedade única do jogador como identificador
+  }
+
   cadastrar(): void {
     if (!this.ehNickCadastrado(this.playerTratamento.nick)) {
-      this.players.push(this.playerTratamento);
-      this.playerTratamento = new Player('', '', 0, '');
+      const novoPlayer = new Player(
+          this.playerTratamento.nome,
+          this.playerTratamento.nick,
+          this.playerTratamento.idade,
+          this.lane
+      );
+      this.players.push(novoPlayer);
+      this.playerTratamento.lane = this.lane;
       this.mensagemErro = '';
     } else {
       this.mensagemErro = `Nickname ${this.playerTratamento.nick} já cadastrado!`;
@@ -40,23 +52,47 @@ export class AppComponent {
     }
 
   }
-
+  onLangeChange($event:any) {
+    this.lane = $event.value;
+  }
   private ehNickCadastrado(nick: string): boolean {
     const playersRetornados = this.players.filter(player => player.nick === nick);
     return playersRetornados.length > 0;
   }
 
-  pesquisar(pedacoNick: string) {
-    if (pedacoNick.length == 0) {
-      this.playersPesquisa = [];
-    }
-    this.players.forEach(player => {
-      if (player.nome.startsWith(pedacoNick)) {
-        this.playersPesquisa.push(player);
-      }
-    });
+  ativarEdicao() {
+    this.modoEdicao = true;
+    this.jogadorOriginal.nome = this.playerTratamento.nome;
+    this.jogadorOriginal.nick = this.playerTratamento.nick;
+    this.jogadorOriginal.idade = this.playerTratamento.idade;
+    this.jogadorOriginal.lane = this.playerTratamento.lane;
   }
 
+  salvarEdicao() {
+    this.modoEdicao = false;
+    console.log(this.players)
+    this.playerTratamento.lane = this.lane;
+    const index = this.players.findIndex((player) => player.nick === this.playerTratamento.nick);
+
+    if (index == -1) {
+      const jogadorAtualizado = {
+        nome: this.playerTratamento.nome,
+        nick: this.playerTratamento.nick,
+        idade: this.playerTratamento.idade,
+        lane: this.playerTratamento.lane,
+      };
+      this.players[index] = jogadorAtualizado as Player;
+    }
+
+  }
+
+  cancelarEdicao() {
+    this.modoEdicao = false;
+    this.playerTratamento.nome = this.jogadorOriginal.nome;
+    this.playerTratamento.nick = this.jogadorOriginal.nick;
+    this.playerTratamento.idade = this.jogadorOriginal.idade;
+    this.playerTratamento.lane = this.jogadorOriginal.lane;
+  }
 }
 
 

@@ -42,9 +42,9 @@
               <strong>Campo obrigatório</strong>
             </mat-error>
           </mat-form-field>
-          <mat-button-toggle-group name="Lane" aria-label="Lane favorita">
+          <mat-button-toggle-group  name="Lane" aria-label="Lane favorita">
             <h3>Selecione a lane:</h3>
-            <mat-button-toggle  type="checkbox" value="Top">
+            <mat-button-toggle id="Top"  (change)="onLangeChange($event)" value="Top">
               <img
               width="50"
               height="50"
@@ -52,7 +52,7 @@
               ngSrc="../assets/TOP.png"
               />
             </mat-button-toggle>
-            <mat-button-toggle type="checkbox" value="Jungle">
+            <mat-button-toggle id="Jungle"  (change)="onLangeChange($event)" value="Jungle">
               <img
                 width="50"
                 height="50"
@@ -60,7 +60,7 @@
               ngSrc="../assets/jungle.png"
               />
             </mat-button-toggle>
-            <mat-button-toggle type="checkbox" value="Mid">
+            <mat-button-toggle id="Mid" (change)="onLangeChange($event)" value="Mid">
               <img
                 width="50"
                 height="50"
@@ -68,7 +68,7 @@
               ngSrc="../assets/MID.png"
               />
             </mat-button-toggle>
-            <mat-button-toggle type="checkbox" value="Atirador">
+            <mat-button-toggle id="Adc" (change)="onLangeChange($event)" value="Atirador">
               <img
                 width="50"
                 height="50"
@@ -76,7 +76,7 @@
               ngSrc="../assets/adc.png"
               />
             </mat-button-toggle>
-            <mat-button-toggle type="checkbox" value="Suporte"><img
+            <mat-button-toggle id="Sup" (change)="onLangeChange($event)" value="Suporte"><img
               width="50"
               height="50"
               alt="Riot Logo"
@@ -85,16 +85,22 @@
             </mat-button-toggle>
           </mat-button-toggle-group>
           <mat-card-footer>
-            <button mat-raised-button class="btn-primary" (click)="cadastrar()">Cadastrar</button>
-            <br>
-            <div class="mensagem-erro">{{mensagemErro}}</div>
-            <br>
+            <ng-container *ngIf="!modoEdicao; else modoEdicaoTemplate">
+              <button mat-raised-button class="btn-primary" (click)="cadastrar()">Cadastrar</button>
+              <br>
+              <div class="mensagem-erro">{{mensagemErro}}</div>
+              <br>
+            </ng-container>
+            <ng-template #modoEdicaoTemplate>
+              <button mat-raised-button class="btn-primary" (click)="salvarEdicao()">Salvar</button>
+              <button mat-raised-button (click)="cancelarEdicao()">Cancelar</button>
+            </ng-template>
           </mat-card-footer>
     </mat-card-content>
   </mat-card>
 </div>
 
-<mat-card class="glass-card" *ngFor="let player of players">
+<mat-card class="glass-card" *ngFor="let player of players; trackBy: trackByPlayer">
   <mat-card-header>
     <mat-card-title-group>
       <mat-card-title>{{player.nome}}</mat-card-title>
@@ -103,13 +109,13 @@
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content>
-    <p>O jogador {{player.nome}} está cadastrado como {{player.lane}}</p>
+    <p *ngIf="lane">O jogador {{player.nome}} está cadastrado como {{player.lane}}</p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-fab color="primary" (click)="remover(player)">
+    <button mat-fab (click)="remover(player)">
       <mat-icon>delete</mat-icon>
     </button>
-    <button mat-icon-button>
+    <button mat-fab (click)="ativarEdicao()">
       <mat-icon>edit</mat-icon>
     </button>
   </mat-card-actions>

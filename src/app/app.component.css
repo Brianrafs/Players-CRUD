@@ -123,5 +123,31 @@ mat-button-toggle:active{
   background-color: #c26297;
 }
 
+mat-card-title{
+  font-size: 2rem;
+}
+
+mat-card-subtitle{
+  font-size: 1.2rem;
+}
+
+mat-card-actions{
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+mat-card-actions button{
+  margin: 0.5em;
+  background-color: #f3aad1;
+}
+
+mat-card-actions button:hover{
+  background-color: #e87fb6;
+}
+
+mat-card-actions button:active{
+  background-color: #c26297;
+}
+
 
 
