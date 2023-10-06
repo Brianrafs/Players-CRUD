@@ -1,27 +1,45 @@
-# PlayerCRUD
+# Players-CRUD - Web Application in Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.3.
+## Overview
 
-## Development server
+Players-CRUD is a web application developed in Angular for academic purposes that aims to simplify the management of League of Legends player information. This first version, v1.0, marks the beginning of an exciting journey to make maintaining player data in League of Legends easier.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Key Features
 
-## Code scaffolding
+### Intuitive Form
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- Offers a simple and intuitive form to add detailed information about a player, including name, position and other relevant information.
 
-## Build
+### Player View
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Player data is displayed in an organized and accessible manner, allowing users to view information quickly and easily.
 
-## Running unit tests
+### Editing and Update
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- The application allows editing and updating existing player information, ensuring that the data is always up to date.
 
-## Running end-to-end tests
+### Player Exclusion
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- It is also possible to remove players from the database when necessary.
 
-## Further help
+## How to use
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+1. Clone this repository.
+2. Install dependencies using `npm install`.
+3. Start the development server with `ng serve`.
+4. Access the application in your browser: `http://localhost:4200`.
+
+## Contribution
+
+Contributions are welcome! If you want to contribute to this project, please follow these steps:
+
+1. Fork this repository.
+2. Create a branch for your feature (`git checkout -b feature/nova-feature`).
+3. Commit your changes (`git commit -m 'I added a new feature'`).
+4. Push to the branch (`git push origin feature/nova-feature`).
+5. Create a new Pull Request.
+
+
+---
+
+Thank you for joining us on this exciting development journey! If you have any questions or suggestions, don't hesitate to get in touch.
